@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>Rock, Paper & Scissors</title>
+</head>
+
+<body>
+    <div class="MainSection">
+        <div class="textSection">
+            <span>ROCK</span>
+            <span>PAPER</span>
+            <span>SCISSORS</span>
+        </div>
+        <div class="scoreSection">
+            <div class="scoreBoard">
+                <p>COMPUTER SCORE</p>
+                <p class="number" id="computerScore">0</p>
+            </div>
+            <div class="scoreBoard">
+                <p>YOUR SCORE</p>
+                <p class="number" id="userScore">0</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="triangle-container">
+        <div class="circle rock" onclick="playGame('rock')">
+            <img src="./images/rock.png" alt="Rock">
+        </div>
+        <div class="circle paper" onclick="playGame('paper')">
+            <img src="./images/paper.png" alt="Paper">
+        </div>
+        <div class="circle scissors" onclick="playGame('scissors')">
+            <img src="./images/scissors.png" alt="Scissors">
+        </div>
+    </div>
+
+    <button class="rules-button" onclick="toggleRulesModal()">Rules</button>
+
+    <div class="rules-modal" id="rulesModal">
+        <div class="modal-content">
+            <button class="close-button" id="closeButton" onclick="toggleRulesModal()">X</button>
+            <h2>Game Rules</h2>
+            <ul>
+                <li>Rock beats scissors, scissors beat paper, and paper beats rock.</li>
+                <li>Use rock, paper, scissors to settle minor decisions or simply play to pass the time.</li>
+                <li>If both players lay down the same hand, it's a tie.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="result-modal" id="resultModal">
+        <div class="modal-content">
+            <button class="close-button" onclick="toggleResultModal()">X</button>
+            <h2 id="resultMessage">You Win!</h2>
+            <div class="result-details">
+                <p><strong>Your Choice:</strong> <span id="userChoice">Rock</span></p>
+                <p><strong>Computer's Choice:</strong> <span id="computerChoice">Scissors</span></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+            let userScore = 0;
+            let computerScore = 0;
+
+            function toggleRulesModal() {
+                const modal = document.getElementById('rulesModal');
+                modal.style.display = modal.style.display === 'flex' ? 'none' : 'flex';
+            }
+
+            function toggleResultModal() {
+                const modal = document.getElementById('resultModal');
+                modal.style.display = modal.style.display === 'flex' ? 'none' : 'flex';
+            }
+
+            function playGame(userChoice) {
+                const choices = ['rock', 'paper', 'scissors'];
+                const computerChoice = choices[Math.floor(Math.random() * choices.length)];
+                const resultMessage = document.getElementById('resultMessage');
+                const userChoiceDisplay = document.getElementById('userChoice');
+                const computerChoiceDisplay = document.getElementById('computerChoice');
+
+                userChoiceDisplay.textContent = userChoice.charAt(0).toUpperCase() + userChoice.slice(1);
+                computerChoiceDisplay.textContent = computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1);
+
+                if (userChoice === computerChoice) {
+                    resultMessage.textContent = "It's a Tie!";
+                } else if (
+                    (userChoice === 'rock' && computerChoice === 'scissors') ||
+                    (userChoice === 'scissors' && computerChoice === 'paper') ||
+                    (userChoice === 'paper' && computerChoice === 'rock')
+                ) {
+                    resultMessage.textContent = 'You Win!';
+                    userScore++;
+                    document.getElementById('userScore').textContent = userScore;
+                } else {
+                    resultMessage.textContent = 'Computer Wins!';
+                    computerScore++;
+                    document.getElementById('computerScore').textContent = computerScore;
+                }
+
+                toggleResultModal();
+            }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,246 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    /* Ensures vertical stacking */
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #8cc461;
+}
+
+.MainSection {
+    display: flex;
+    width: 80%;
+    max-width: 600px;
+    background-color: transparent;
+    border: 2px solid white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.textSection {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: transparent;
+    padding: 20px;
+}
+
+.textSection span {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 10px 0;
+    color: white;
+}
+
+.scoreSection {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    /* Better alignment for scores */
+    background-color: transparent;
+    padding: 20px;
+}
+
+.scoreBoard {
+    text-align: center;
+    background-color: white;
+    border: 2px solid white;
+    margin-left: 10px;
+    border-radius: 8px;
+    padding: 10px 30px;
+    width: 90%;
+    max-width: 200px;
+    box-sizing: border-box;
+    font-weight: bold;
+    color: black;
+}
+
+.scoreBoard p {
+    margin: 5px 0;
+}
+
+.number {
+    font-size: 60px;
+}
+
+/* Triangle Design for Rock, Paper, Scissors */
+.triangle-container {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    margin-top: 30px;
+    /* Space between MainSection and triangle */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Styling for Circles */
+.circle {
+    position: absolute;
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    border: 5px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Styling for Images inside Circles */
+.circle img {
+    width: 40px;
+    height: 40px;
+}
+
+/* Positioning Circles in an Equilateral Triangle */
+.rock {
+    bottom: 10%;
+    /* Adjusted for consistent triangle structure */
+    left: 50%;
+    transform: translateX(-50%);
+    border-color: #007bff;
+}
+
+.paper {
+    top: 10%;
+    /* Positioning for left corner */
+    left: 25%;
+    transform: translate(-50%, -50%);
+    border-color: #ff9900;
+}
+
+.scissors {
+    top: 10%;
+    /* Positioning for right corner */
+    right: 25%;
+    transform: translate(50%, -50%);
+    border-color: #800080;
+}
+
+/* Connector Lines for Triangle */
+.triangle-container::before,
+.triangle-container::after,
+.triangle-container .middle-line {
+    content: '';
+    position: absolute;
+    background-color: black;
+    width: 4px;
+    z-index: -1;
+}
+
+.triangle-container::before {
+    bottom: 36px;
+    left: calc(50% - 36px);
+    height: 150px;
+    transform: rotate(-20deg);
+    /* Corrected angle for left line */
+}
+
+.triangle-container::after {
+    bottom: 36px;
+    left: calc(50% + 36px);
+    height: 150px;
+    transform: rotate(10deg);
+    /* Corrected angle for right line */
+}
+
+.triangle-container .middle-line {
+    top: 10%;
+    left: 50%;
+    width: 120px;
+    height: 4px;
+    background-color: black;
+    transform: translateX(-50%);
+}
+
+/* Rules Button */
+.rules-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.rules-button:hover {
+    background-color: #0056b3;
+}
+
+/* Modal Styles */
+.rules-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: white;
+    width: 80%;
+    max-width: 400px;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.modal-content h2 {
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+.modal-content ul {
+    text-align: left;
+    list-style: none;
+    padding: 0;
+}
+
+.modal-content ul li {
+    margin-bottom: 10px;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #333;
+}
+
+/* Close Button */
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ff0000;
+    cursor: pointer;
+}
+
+.close-button:hover {
+    color: #cc0000;
+}
